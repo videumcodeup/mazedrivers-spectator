@@ -1,0 +1,28 @@
+.Maze {
+}
+
+.Maze__row {
+  width: 100%;
+  overflow: hidden;
+}
+
+.Maze__cell {
+  width: 30px;
+  height: 30px;
+  float: left;
+  background: #bbb;
+}
+
+.Maze__cell--room {
+  background: white;
+}
+
+.Maze__cell--wall,
+.Maze__cell--corner {
+  background: #bbb;
+}
+
+.Maze__cell--opening,
+.Maze__cell--entrance {
+  background: white;
+}
