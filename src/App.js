@@ -31,7 +31,8 @@ class App extends Component {
     const initialState = {
       game: {
         maze: []
-      }
+      },
+      players: {}
     }
 
     this.store = configureStore(initialState, reducer, `ws://${host}:${port}`)
@@ -52,14 +53,15 @@ class App extends Component {
 
   render () {
     const {
-      game: { maze }
+      game: { maze },
+      players
     } = this.state
 
     console.log('App render', this.state, this.state.game, this.state.game.maze)
 
     return (
       <div className='App'>
-        <Maze maze={maze} />
+        <Maze maze={maze} players={players} />
         <button type='button' onClick={this.handleJoinButtonClick}>
           Join game
         </button>

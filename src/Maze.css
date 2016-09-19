@@ -1,4 +1,6 @@
 .Maze {
+  position: relative;
+  width: calc((1 + 10 * 2) * 30px);
 }
 
 .Maze__row {
