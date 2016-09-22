@@ -3,4 +3,5 @@
   width: 30px;
   height: 30px;
   background: red;
+  transition: left 1s linear, top 1s linear;
 }
