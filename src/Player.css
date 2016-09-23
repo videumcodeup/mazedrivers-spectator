@@ -1,7 +1,10 @@
 .Player {
+  background-image: url(./png/taxi.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 25px 25px;
   position: absolute;
   width: 30px;
   height: 30px;
-  background: red;
-  transition: left 1s linear, top 1s linear;
+  transition: left 300ms linear, top 300ms linear;
 }

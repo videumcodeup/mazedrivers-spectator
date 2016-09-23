@@ -15,16 +15,19 @@
   background: #bbb;
 }
 
+.Maze__cell--entrance,
+.Maze__cell--opening,
 .Maze__cell--room {
-  background: white;
+  background: url(./png/grass.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 30px 30px;
 }
 
 .Maze__cell--wall,
 .Maze__cell--corner {
-  background: #bbb;
-}
-
-.Maze__cell--opening,
-.Maze__cell--entrance {
-  background: white;
+  background: url(./png/bricks.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 30px 30px;
 }
