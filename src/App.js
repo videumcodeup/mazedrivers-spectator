@@ -3,7 +3,25 @@ import './App.css'
 import Maze from './Maze'
 import configureStore from './configureStore'
 
+// Example actions
+// ['players', 'albert', 'directions', 'NORTH'],
+// ['players', 'albert', 'x', 2],
+// ['maze', 0, 1, 'wall'],
+const actionArrayReducer = (state, [collection, scope, key, value]) => ({
+  ...state,
+  [collection]: {
+    ...state[collection],
+    [scope]: {
+      ...state[collection][scope],
+      [key]: value
+    }
+  }
+})
+
 function reducer (state, action) {
+  if (Array.isArray(action)) {
+    return action.reduce(actionArrayReducer, state)
+  }
   switch (action.type) {
     case 'JOIN_SUCCESS':
       console.log(action)
@@ -29,9 +47,7 @@ class App extends Component {
     const port = 8001
 
     const initialState = {
-      game: {
-        maze: []
-      },
+      maze: [],
       players: {}
     }
 
@@ -53,11 +69,11 @@ class App extends Component {
 
   render () {
     const {
-      game: { maze },
+      maze,
       players
     } = this.state
 
-    console.log('App render', this.state, this.state.game, this.state.game.maze)
+    console.log('App render', this.state)
 
     return (
       <div className='App'>
