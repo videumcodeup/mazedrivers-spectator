@@ -1,4 +1,3 @@
-// import socket from './socket'
 import without from 'lodash/without'
 
 let subscribers = []
