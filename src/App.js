@@ -55,7 +55,7 @@ class App extends Component {
 
     this.state = initialState
 
-    this.unsubscribeFromStore = this.store.subscribe(state => {
+    this.unsubscribeFromStore = this.store.subscribe('message', state => {
       console.log('subscribe', state)
       this.setState(state)
     })
