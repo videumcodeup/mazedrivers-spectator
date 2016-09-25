@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
+import Header from './Header'
+import Lobby from './Lobby'
 import Maze from './Maze'
 import configureStore from './configureStore'
 
@@ -23,6 +25,11 @@ function reducer (state, action) {
     return action.reduce(actionArrayReducer, state)
   }
   switch (action.type) {
+    case 'LIST_SUCCESS':
+      return {
+        ...state,
+        ...action.payload
+      }
     case 'STATE':
       return action.payload
     default:
@@ -39,6 +46,7 @@ class App extends Component {
     const port = 8001
 
     const initialState = {
+      clients: [],
       maze: [],
       players: {}
     }
@@ -56,6 +64,7 @@ class App extends Component {
 
   render () {
     const {
+      clients,
       maze,
       players
     } = this.state
@@ -64,6 +73,8 @@ class App extends Component {
 
     return (
       <div className='App'>
+        <Header />
+        <Lobby clients={clients} />
         <Maze maze={maze} players={players} />
       </div>
     )
