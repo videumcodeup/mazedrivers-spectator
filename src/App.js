@@ -23,12 +23,6 @@ function reducer (state, action) {
     return action.reduce(actionArrayReducer, state)
   }
   switch (action.type) {
-    case 'JOIN_SUCCESS':
-      console.log(action)
-      return state
-    case 'JOIN_FAILURE':
-      console.log(action)
-      return state
     case 'STATE':
       return action.payload
     default:
@@ -36,8 +30,6 @@ function reducer (state, action) {
   }
 }
 
-const joinRequest = nickname =>
-  ({ type: 'JOIN_REQUEST', payload: { nickname } })
 
 class App extends Component {
   constructor (props) {
@@ -60,11 +52,6 @@ class App extends Component {
       this.setState(state)
     })
 
-    this.handleJoinButtonClick = this.handleJoinButtonClick.bind(this)
-  }
-
-  handleJoinButtonClick () {
-    this.store.dispatch(joinRequest('Albert' + Math.floor(Math.random() * 25)))
   }
 
   render () {
@@ -78,9 +65,6 @@ class App extends Component {
     return (
       <div className='App'>
         <Maze maze={maze} players={players} />
-        <button type='button' onClick={this.handleJoinButtonClick}>
-          Join game
-        </button>
       </div>
     )
   }
