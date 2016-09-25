@@ -13,11 +13,15 @@ export default function configureStore (initialState = {}, reducer, url) {
 
   ws.onmessage = event => {
     const { data } = event
-    console.log('onmessage', data)
     const action = JSON.parse(data)
-    console.log('onmessage', state, action)
+    if (Array.isArray(action)) {
+      action.forEach(item => {
+        console.log(...item)
+      })
+    } else {
+      console.log(action)
+    }
     state = reducer(state, action)
-    console.log('onmessage', state)
     notifySubscribers(state)
   }
 

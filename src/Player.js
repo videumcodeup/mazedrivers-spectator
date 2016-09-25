@@ -11,7 +11,9 @@ function Player ({ direction, x, y }) {
 }
 
 Player.propTypes = {
-  player: PropTypes.object.isRequired
+  direction: PropTypes.string.isRequired,
+  x: PropTypes.number.isRequired,
+  y: PropTypes.number.isRequired
 }
 
 export default Player
