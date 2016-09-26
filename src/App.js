@@ -40,6 +40,9 @@ function reducer (state, action) {
 const listRequest = () =>
   ({ type: 'LIST_REQUEST' })
 
+const followRequest = ({ nickname }) =>
+  ({ type: 'FOLLOW_REQUEST', payload: { nickname } })
+
 class App extends Component {
   constructor (props) {
     super(props)
@@ -65,6 +68,8 @@ class App extends Component {
     this.unsubscribeFromStoreOpen = this.store.subscribe('open', () => {
       this.store.dispatch(listRequest())
     })
+
+    this.handleClickPlayer = this.handleClickPlayer.bind(this)
   }
 
   render () {
@@ -82,6 +87,7 @@ class App extends Component {
         {maze.length ? null : (
           <Lobby
             clients={clients}
+            handleClickPlayer={this.handleClickPlayer}
           />
         )}
         <Maze maze={maze} players={players} />
@@ -92,6 +98,11 @@ class App extends Component {
   componentWillUnmount () {
     this.unsubscribeFromStore()
     this.unsubscribeFromStoreOpen()
+  }
+
+  handleClickPlayer (event) {
+    const { nickname } = event.target.dataset
+    this.store.dispatch(followRequest({ nickname }))
   }
 }
 

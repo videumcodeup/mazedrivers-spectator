@@ -2,7 +2,10 @@ import React, { PropTypes } from 'react'
 import GameList from './GameList'
 // import './Lobby.css'
 
-function Lobby ({ clients }) {
+function Lobby ({
+  clients,
+  ...rest
+}) {
   const games = clients.reduce((result, {
     gameId,
     nickname,
@@ -16,7 +19,7 @@ function Lobby ({ clients }) {
   }), {})
   return (
     <div className='Lobby'>
-      <GameList games={games} />
+      <GameList games={games} {...rest} />
     </div>
   )
 }
