@@ -43,16 +43,20 @@
   color: #cc7f1a;
 }
 
-.GameList__item .Player {
-  z-index: 1;
-  position: relative;
-  display: block;
-  width: 100%;
-  padding-left: 30px;
-  text-align: left;
-  background-position: 1px 2px;
+.GameList__player {
   background-color: white;
+  background-image: url(./png/taxi.png);
+  background-position: 1px 2px;
+  background-repeat: no-repeat;
+  background-size: 25px 25px;
   border: 0;
   border-top: 1px solid #ccc;
+  display: block;
   font-family: monospace;
+  height: 30px;
+  padding-left: 30px;
+  position: relative;
+  text-align: left;
+  width: 100%;
+  z-index: 1;
 }

@@ -24,7 +24,7 @@ function GameList ({
           {map(players, (player, nickname) => (
             <button
               key={nickname}
-              className='Player'
+              className='GameList__player'
               type='button'
               data-nickname={nickname}
               onClick={handleClickPlayer}

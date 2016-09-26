@@ -1,10 +1,41 @@
 .Player {
-  background-image: url(./png/taxi.png);
+  height: 30px;
+  position: absolute;
+  transition: left 300ms linear, top 300ms linear;
+  width: 30px;
+}
+
+.Player__background {
   background-position: center center;
   background-repeat: no-repeat;
   background-size: 25px 25px;
-  position: absolute;
-  width: 30px;
   height: 30px;
-  transition: left 300ms linear, top 300ms linear;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 30px;
+}
+
+.Player__background--taxi {
+  background-image: url(./png/taxi.png);
+}
+
+.Player__background--police {
+  background-image: url(./png/police.png);
+}
+
+.Player__background--ambulance {
+  background-image: url(./png/ambulance.png);
+}
+
+.Player__nickname {
+  color: white;
+  font-size: 10px;
+  left: calc(50% - 100px);
+  line-height: 20px;
+  position: absolute;
+  text-align: center;
+  text-transform: uppercase;
+  top: -20px;
+  width: 200px;
 }
