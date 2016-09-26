@@ -6,7 +6,7 @@ function PlayersOverlay ({ players }) {
   return (
     <div className='PlayersOverlay'>
       {Object.keys(players).map(id => (
-        <Player key={id} {...players[id]} />
+        <Player key={id} nickname={id} {...players[id]} />
       ))}
     </div>
   )
