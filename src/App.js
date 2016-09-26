@@ -32,6 +32,17 @@ function reducer (state, action) {
       }
     case 'STATE':
       return action.payload
+    case 'FOLLOW_SUCCESS':
+      return {
+        ...state,
+        following: action.payload.nickname
+      }
+    case 'UNFOLLOW_SUCCESS':
+      return {
+        ...state,
+        maze: [],
+        players: {}
+      }
     default:
       return state
   }
@@ -42,6 +53,9 @@ const listRequest = () =>
 
 const followRequest = ({ nickname }) =>
   ({ type: 'FOLLOW_REQUEST', payload: { nickname } })
+
+const unfollowRequest = ({ nickname }) =>
+  ({ type: 'UNFOLLOW_REQUEST', payload: { nickname } })
 
 class App extends Component {
   constructor (props) {
@@ -70,6 +84,7 @@ class App extends Component {
     })
 
     this.handleClickPlayer = this.handleClickPlayer.bind(this)
+    this.handleClickHome = this.handleClickHome.bind(this)
   }
 
   render () {
@@ -83,7 +98,7 @@ class App extends Component {
 
     return (
       <div className='App'>
-        <Header />
+        <Header onClickHome={this.handleClickHome} />
         {maze.length ? null : (
           <Lobby
             clients={clients}
@@ -103,6 +118,11 @@ class App extends Component {
   handleClickPlayer (event) {
     const { nickname } = event.target.dataset
     this.store.dispatch(followRequest({ nickname }))
+  }
+
+  handleClickHome () {
+    const nickname = this.state.following
+    this.store.dispatch(unfollowRequest({ nickname }))
   }
 }
 

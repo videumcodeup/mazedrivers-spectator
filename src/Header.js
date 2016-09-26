@@ -1,10 +1,17 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import './Header.css'
 
-function Header () {
+function Header ({ onClickHome }) {
   return (
     <div className='Header'>
-      <h1 className='Header__title'>Mazedrivers</h1>
+      <h1 className='Header__title'>
+        <button
+          className='Header__mazedrivers'
+          onClick={onClickHome}
+        >
+          Mazedrivers
+        </button>
+      </h1>
       <a
         className='Header__codeup'
         href='http://videumcodeup.se'
@@ -22,6 +29,7 @@ function Header () {
 }
 
 Header.propTypes = {
+  onClickHome: PropTypes.func.isRequired
 }
 
 export default Header

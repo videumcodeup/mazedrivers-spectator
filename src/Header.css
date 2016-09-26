@@ -9,9 +9,7 @@
 
 .Header h1 {
   margin: 0;
-  text-transform: lowercase;
-  color: white;
-  font-family: monospace;
+  font-size: 2em;
   flex: 1;
 }
 
@@ -20,6 +18,23 @@
 .Header a:hover,
 .Header a:active {
   color: white;
+}
+
+.Header__mazedrivers {
+  border: 0;
+  display: block;
+  font-size: inherit;
+  text-transform: lowercase;
+  color: white;
+  font-family: monospace;
+  height: 100%;
+  background: transparent;
+  border-radius: 0;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+.Header__mazedrivers:hover {
+  cursor: pointer;
 }
 
 .Header__codeup,
