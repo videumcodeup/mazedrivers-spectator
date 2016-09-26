@@ -5,6 +5,18 @@ import Lobby from './Lobby'
 import Maze from './Maze'
 import configureStore from './configureStore'
 
+const localStorage = window ? window.localStorage : {
+  setItem () {},
+  getItem () {},
+  removeItem () {}
+}
+
+const location = window ? window.location : {
+  reload () {}
+}
+
+const STORAGE_KEY_HOST_DETAILS = 'mazedrivers-host-details'
+
 // Example actions
 // ['players', 'albert', 'directions', 'NORTH'],
 // ['players', 'albert', 'x', 2],
@@ -61,10 +73,16 @@ class App extends Component {
   constructor (props) {
     super(props)
 
-    const host = 'localhost'
-    const port = 8001
+    const hostData = localStorage.getItem(STORAGE_KEY_HOST_DETAILS)
+
+    const { host, port } = hostData ? JSON.parse(hostData) : {
+      host: 'localhost',
+      port: 8001
+    }
 
     const initialState = {
+      host,
+      port,
       clients: [],
       maze: [],
       players: {}
@@ -89,6 +107,8 @@ class App extends Component {
 
   render () {
     const {
+      host,
+      port,
       clients,
       maze,
       players
@@ -98,7 +118,11 @@ class App extends Component {
 
     return (
       <div className='App'>
-        <Header onClickHome={this.handleClickHome} />
+        <Header
+          onClickHome={this.handleClickHome}
+          onUpdateHostDetails={this.handleUpdateHostDetails}
+          hostDetails={{ host, port }}
+        />
         {maze.length ? null : (
           <Lobby
             clients={clients}
@@ -123,6 +147,12 @@ class App extends Component {
   handleClickHome () {
     const nickname = this.state.following
     this.store.dispatch(unfollowRequest({ nickname }))
+  }
+
+  handleUpdateHostDetails (values) {
+    const data = JSON.stringify(values)
+    localStorage.setItem(STORAGE_KEY_HOST_DETAILS, data)
+    location.reload()
   }
 }
 
