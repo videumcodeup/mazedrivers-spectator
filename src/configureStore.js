@@ -1,15 +1,18 @@
-// import socket from './socket'
 import without from 'lodash/without'
 
-let subscribers = []
+let subscribers = { open: [], message: [] }
 
-const notifySubscribers = (state) =>
-  subscribers.forEach(callback => callback(state))
+const notifySubscribers = (event, payload) =>
+  subscribers[event].forEach(callback => callback(payload))
 
 export default function configureStore (initialState = {}, reducer, url) {
   const ws = new window.WebSocket(url)
 
   let state = initialState
+
+  ws.onopen = () => {
+    notifySubscribers('open')
+  }
 
   ws.onmessage = event => {
     const { data } = event
@@ -22,14 +25,14 @@ export default function configureStore (initialState = {}, reducer, url) {
       console.log(action)
     }
     state = reducer(state, action)
-    notifySubscribers(state)
+    notifySubscribers('message', state)
   }
 
   const api = {
-    subscribe (callback) {
-      subscribers.push(callback)
+    subscribe (event, callback) {
+      subscribers[event].push(callback)
       return function unsubscribe () {
-        subscribers = without(subscribers, callback)
+        subscribers[event] = without(subscribers[event], callback)
       }
     },
 
