@@ -37,6 +37,8 @@ function reducer (state, action) {
   }
 }
 
+const listRequest = () =>
+  ({ type: 'LIST_REQUEST' })
 
 class App extends Component {
   constructor (props) {
@@ -60,6 +62,9 @@ class App extends Component {
       this.setState(state)
     })
 
+    this.unsubscribeFromStoreOpen = this.store.subscribe('open', () => {
+      this.store.dispatch(listRequest())
+    })
   }
 
   render () {
@@ -82,6 +87,7 @@ class App extends Component {
 
   componentWillUnmount () {
     this.unsubscribeFromStore()
+    this.unsubscribeFromStoreOpen()
   }
 }
 
