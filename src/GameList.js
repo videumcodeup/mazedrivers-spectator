@@ -14,7 +14,7 @@ function GameList ({
           <button
             className='Game'
             type='button'
-            data-id={gameId}
+            data-gameId={gameId}
             onClick={handleClickGame}
           >
             <div className='Game__title'>
@@ -26,7 +26,7 @@ function GameList ({
               key={nickname}
               className='Player'
               type='button'
-              data-id={nickname}
+              data-nickname={nickname}
               onClick={handleClickPlayer}
             >
               {nickname}
