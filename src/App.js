@@ -79,7 +79,11 @@ class App extends Component {
     return (
       <div className='App'>
         <Header />
-        <Lobby clients={clients} />
+        {maze.length ? null : (
+          <Lobby
+            clients={clients}
+          />
+        )}
         <Maze maze={maze} players={players} />
       </div>
     )
