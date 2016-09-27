@@ -1,7 +1,12 @@
 import React, { PropTypes } from 'react'
+import HostDetailsForm from './HostDetailsForm'
 import './Header.css'
 
-function Header ({ onClickHome }) {
+function Header ({
+  onClickHome,
+  onUpdateHostDetails,
+  hostDetails
+}) {
   return (
     <div className='Header'>
       <h1 className='Header__title'>
@@ -12,6 +17,10 @@ function Header ({ onClickHome }) {
           Mazedrivers
         </button>
       </h1>
+      <HostDetailsForm
+        onSubmit={onUpdateHostDetails}
+        initialValues={hostDetails}
+      />
       <a
         className='Header__codeup'
         href='http://videumcodeup.se'
@@ -29,7 +38,8 @@ function Header ({ onClickHome }) {
 }
 
 Header.propTypes = {
-  onClickHome: PropTypes.func.isRequired
+  onClickHome: PropTypes.func.isRequired,
+  onUpdateHostDetails: PropTypes.func.isRequired
 }
 
 export default Header
