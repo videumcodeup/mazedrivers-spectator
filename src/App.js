@@ -86,7 +86,8 @@ class App extends Component {
       port,
       clients: [],
       maze: [],
-      players: {}
+      players: {},
+      details: {}
     }
 
     this.store = configureStore(initialState, reducer, `ws://${host}:${port}`)
@@ -112,7 +113,8 @@ class App extends Component {
       port,
       clients,
       maze,
-      players
+      players,
+      details
     } = this.state
 
     console.log('App render', this.state)
@@ -130,7 +132,7 @@ class App extends Component {
             handleClickPlayer={this.handleClickPlayer}
           />
         )}
-        <Maze maze={maze} players={players} />
+        <Maze details={details} maze={maze} players={players} />
         <Result players={players} />
       </div>
     )

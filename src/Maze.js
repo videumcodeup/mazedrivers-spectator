@@ -1,10 +1,16 @@
 import React, { PropTypes } from 'react'
 import PlayersOverlay from './PlayersOverlay'
+import Countdown from './Countdown'
 import './Maze.css'
 
-function Maze ({ maze, players }) {
+function Maze ({
+  maze,
+  players,
+  details
+}) {
   return (
     <div className='Maze'>
+      <Countdown details={details} />
       <PlayersOverlay players={players} />
       {maze.map((row, rowKey) => (
         <div key={rowKey} className='Maze__row'>

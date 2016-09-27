@@ -1,0 +1,25 @@
+@keyframes counter {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.counter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: Helvetica,sans-serif;
+  font-size: 82px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.hide-counter {
+  animation-name: counter;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
