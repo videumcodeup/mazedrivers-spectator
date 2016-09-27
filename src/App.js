@@ -3,6 +3,7 @@ import './App.css'
 import Header from './Header'
 import Lobby from './Lobby'
 import Maze from './Maze'
+import Result from './Result'
 import configureStore from './configureStore'
 
 const localStorage = window ? window.localStorage : {
@@ -130,6 +131,7 @@ class App extends Component {
           />
         )}
         <Maze maze={maze} players={players} />
+        <Result players={players} />
       </div>
     )
   }
