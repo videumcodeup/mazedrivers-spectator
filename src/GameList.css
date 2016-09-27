@@ -1,6 +1,7 @@
 .GameList {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .GameList__item {
